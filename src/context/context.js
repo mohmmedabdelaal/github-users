@@ -24,6 +24,7 @@ export const GithubProvider = ({ children }) => {
     if (response) {
       setGithubUser(response.data);
       const { login, followers_url } = response.data;
+      console.log(login, followers_url);
     }
     setIsLoading(false);
   };

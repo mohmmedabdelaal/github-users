@@ -3,11 +3,49 @@ import { useGithubContext } from '../context/context';
 import styled from 'styled-components';
 import { GoRepo, GoGist } from 'react-icons/go';
 import { FiUsers, FiUserPlus } from 'react-icons/fi';
+import Item from './Item';
 
 const UserInfo = () => {
+  const { githubUser } = useGithubContext();
+  const { public_repos, followers, following, public_gists } = githubUser;
+
+  const items = [
+    {
+      id: 1,
+      icon: <GoRepo className="icon" />,
+      label: 'Repos',
+      color: 'pink',
+      value: public_repos,
+    },
+    {
+      id: 2,
+      icon: <GoGist className="icon" />,
+      label: 'Gists',
+      color: 'green',
+      value: public_gists,
+    },
+    {
+      id: 3,
+      icon: <FiUsers className="icon" />,
+      label: 'Followers',
+      color: 'purple',
+      value: followers,
+    },
+    {
+      id: 4,
+      icon: <FiUserPlus className="icon" />,
+      label: 'Following',
+      color: 'yellow',
+      value: following,
+    },
+  ];
   return (
     <section className="section">
-      <div className="section-center">this is info</div>
+      <Wrapper className="section-center">
+        {items.map((item) => (
+          <Item key={item.id} {...item} />
+        ))}
+      </Wrapper>
     </section>
   );
 };
