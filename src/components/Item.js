@@ -1,24 +1,19 @@
 import React from 'react';
-import { useGithubContext } from '../context/context';
 import styled from 'styled-components';
-import { GoRepo, GoGist } from 'react-icons/go';
-import { FiUsers, FiUserPlus } from 'react-icons/fi';
 
-const UserInfo = () => {
+function Item({ icon, label, value, color }) {
   return (
-    <section className="section">
-      <div className="section-center">this is info</div>
-    </section>
+    <WrapperItem className="item">
+      <span className={color}>{icon}</span>
+      <div>
+        <h3>{value}</h3>
+        <p>{label}</p>
+      </div>
+    </WrapperItem>
   );
-};
+}
 
-const Wrapper = styled.section`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem 2rem;
-  @media (min-width: 640px) {
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  }
+const WrapperItem = styled.section`
   .item {
     border-radius: var(--radius);
     padding: 1rem 2rem;
@@ -64,4 +59,4 @@ const Wrapper = styled.section`
   }
 `;
 
-export default UserInfo;
+export default Item;

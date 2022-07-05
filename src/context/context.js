@@ -10,21 +10,19 @@ const GithubContext = React.createContext();
 export const GithubProvider = ({ children }) => {
   const [githubUser, setGithubUser] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [requests, setRequests] = useState(0);
+  const [error, setError] = useState({ show: false, msg: '' });
 
-  const getGithubUser = async () => {
+  const searchGithub = async (user) => {
     setIsLoading(true);
-    try {
-      const response = await axios.get(rootUrl);
-      const data = response.data;
-      setIsLoading(false);
-      setGithubUser(data);
-    } catch (err) {
-      setError(err.message);
-    }
+    const response = await axios
+      .get(`${rootUrl}/users/${user}`)
+      .catch((err) => console.log(err));
+
+    setIsLoading(false);
   };
   useEffect(() => {
-    getGithubUser();
+    searchGithub();
   }, []);
 
   return (

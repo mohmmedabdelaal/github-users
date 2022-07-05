@@ -7,6 +7,7 @@ function App() {
     <Routes>
       <Route
         path="/"
+        exact
         element={
           // <PrivateRoute>
           <Dashboard></Dashboard>
