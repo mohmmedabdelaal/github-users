@@ -4,10 +4,24 @@ import { useGithubContext } from '../context/context';
 import { ExampleChart, Pie3D, Column3D, Bar3D, Doughnut2D } from './Charts';
 const Repos = () => {
   const { repos } = useGithubContext();
+  const chartData = [
+    {
+      label: 'HP',
+      value: '20',
+    },
+    {
+      label: 'lenovo',
+      value: '40',
+    },
+    {
+      label: 'dell',
+      value: '40',
+    },
+  ];
   return (
     <section>
       <Wrapper className="section-center">
-        <ExampleChart />
+        <ExampleChart data={chartData} />
         <Pie3D />
         <Column3D />
         <Doughnut2D />
