@@ -3,16 +3,19 @@ import { useGithubContext } from '../context/context';
 import styled from 'styled-components';
 import { MdBusiness, MdLocationOn, MdLink } from 'react-icons/md';
 const Card = ({ children }) => {
-  const context = useGithubContext();
+  const { githubUser } = useGithubContext();
+  const { avatar_url, bio, html_url, company, name, location } = githubUser;
+  console.log(githubUser);
+
   return (
     <Wrapper>
       <header>
-        <img src="https://dslfj.com" alt="user" />
-        <h4>here we are</h4>
-        <p>name</p>
-        <a href="http://fds.com">follow</a>
+        <img src={avatar_url} alt={name} />
+        <h4>{name}</h4>
+        <p>{}</p>
+        <a href={html_url}>follow</a>
       </header>
-      <p className="pio">pio</p>
+      <p className="pio">{}</p>
       <div className="links">
         <p>links here</p>
         <a href="kdjf">jjj</a>

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { MdSearch } from 'react-icons/md';
-import { GithubContext } from '../context/context';
+import { useGithubContext } from '../context/context';
 const Search = () => {
   const [user, setUser] = useState('');
-
+  
   const submitHandler = (e) => {
     e.preventDefault();
     if (user) {

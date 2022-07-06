@@ -3,6 +3,7 @@ import { useGithubContext } from '../context/context';
 import styled from 'styled-components';
 
 const Followers = () => {
+  const data = useGithubContext()
   return (
     <Wrapper>
       <div className="followers">{/** map the followers */}</div>
