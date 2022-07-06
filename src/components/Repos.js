@@ -7,6 +7,7 @@ const Repos = () => {
   return (
     <section>
       <Wrapper className="section-center">
+        <ExampleChart />
         <Pie3D />
         <Column3D />
         <Doughnut2D />
