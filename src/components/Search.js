@@ -4,15 +4,22 @@ import { MdSearch } from 'react-icons/md';
 import { useGithubContext } from '../context/context';
 const Search = () => {
   const [user, setUser] = useState('');
-  
+  const { error, isLoading, requests, searchGithub } = useGithubContext();
+
   const submitHandler = (e) => {
     e.preventDefault();
     if (user) {
+      searchGithub(user);
     }
   };
   return (
     <section className="section">
       <Wrapper className="section-center">
+        {error.show && (
+          <ErrorWrapper>
+            <p>{error.msg}</p>
+          </ErrorWrapper>
+        )}
         <form onSubmit={submitHandler}>
           <div className="form-control">
             <MdSearch />
@@ -22,12 +29,14 @@ const Search = () => {
               onChange={(e) => setUser(e.target.value)}
               placeholder="Search for github user"
             />
-            <button type="submit" className="btn">
-              Search
-            </button>
+            {requests > 0 && !isLoading && (
+              <button type="submit" className="btn">
+                Search
+              </button>
+            )}
           </div>
         </form>
-        <h3>Request: {1} /60</h3>
+        <h3>Request: {requests} /60</h3>
       </Wrapper>
     </section>
   );
